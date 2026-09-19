@@ -1,0 +1,19 @@
+ipam:
+  operator:
+    clusterPoolIPv4PodCIDRList:
+      # cilium docs suggest to set the clusterPoolIPv4 to the value below.
+      # https://docs.cilium.io/en/stable/installation/k3s/#
+      # cilium install 1.20.2 --set=ipam.operator.clusterPoolIPv4PodCIDRList="10.42.0.0/16"
+      - 10.42.0.0/16
+
+operator:
+  replicas: 1
+
+hubble:
+  enabled: true
+
+  relay:
+    enabled: true
+
+  ui:
+    enabled: true
