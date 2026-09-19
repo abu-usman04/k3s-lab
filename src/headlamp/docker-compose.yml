@@ -1,7 +1,7 @@
 services:
   k3s-server:
     image: rancher/k3s:v1.31.4-k3s1
-    container_name: k3s-server
+    container_name: headlamp-server
     privileged: true
     restart: unless-stopped
     tmpfs:
@@ -11,7 +11,7 @@ services:
       - "6443:6443"
       - "8080:30080"
     volumes:
-      - k3s-data:/var/lib/rancher/k3s
+      - headlamp-data:/var/lib/rancher/headlamp
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |

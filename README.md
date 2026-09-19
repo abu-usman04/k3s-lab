@@ -17,8 +17,8 @@ The first start takes 1–2 minutes while images are pulled.
 Verify:
 
 ```bash
-docker exec k3s-server kubectl get nodes
-docker exec k3s-server kubectl get pods -A
+docker exec headlamp-server kubectl get nodes
+docker exec headlamp-server kubectl get pods -A
 ```
 
 ## Dashboard Access
@@ -26,7 +26,7 @@ docker exec k3s-server kubectl get pods -A
 1. Generate a login token:
 
    ```bash
-   docker exec k3s-server kubectl create token headlamp-admin -n kube-system --duration 24h
+   docker exec headlamp-server kubectl create token headlamp-admin -n kube-system --duration 24h
    ```
 
 2. Open http://localhost:8080 and paste the token.
@@ -44,9 +44,9 @@ Tokens expire after 24 hours. Rerun the command to generate a new one.
 ## Working with the Sample Workload
 
 ```bash
-docker exec k3s-server kubectl top pods -n demo
-docker exec k3s-server kubectl scale deployment cpu-burner -n demo --replicas=5
-docker exec k3s-server kubectl delete pod -n demo -l app=cpu-burner
+docker exec headlamp-server kubectl top pods -n demo
+docker exec headlamp-server kubectl scale deployment cpu-burner -n demo --replicas=5
+docker exec headlamp-server kubectl delete pod -n demo -l app=cpu-burner
 ```
 
 Each `cpu-burner` pod is limited to 200m CPU. Deleted pods are recreated automatically by the Deployment.
