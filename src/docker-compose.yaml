@@ -4,27 +4,47 @@ services:
   k3s:
     image: rancher/k3s:v1.35.8-k3s1
     container_name: k3s
+    hostname: k3s
     privileged: true
     restart: unless-stopped
 
+    entrypoint: [ "/bin/sh", "-c" ]
+
     command:
-      - "server"
-      # Cilium docs suggest setting `none` to the CNI when using cilium with headlamp
-      # curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC='--flannel-backend=none
-      # Cilium can replace kube-proxy, that why we are not using `--disable-kube-proxy` yet.
-      - "--flannel-backend=none"
-      # Disable K3s built-in network policy controller; Cilium will handle policies.
-      - "--disable-network-policy"
-      - "--disable=traefik"
-      - "--disable=servicelb"
-      - "--write-kubeconfig=/output/kubeconfig.yaml"
-      - "--write-kubeconfig-mode=644"
+      - |
+        set -e
+
+        echo "Preparing Cilium host mounts..."
+
+        mkdir -p /sys/fs/bpf
+        if ! grep -qs ' /sys/fs/bpf ' /proc/mounts; then
+          mount -t bpf bpffs /sys/fs/bpf
+        fi
+        mount --make-shared /sys/fs/bpf
+
+        mkdir -p /run/cilium/cgroupv2
+        if ! grep -qs ' /run/cilium/cgroupv2 ' /proc/mounts; then
+          mount -t cgroup2 none /run/cilium/cgroupv2
+        fi
+        mount --make-shared /run/cilium/cgroupv2
+
+        echo "Starting K3s..."
+
+        exec /bin/k3s server \
+          --node-name=k3s \
+          --flannel-backend=none \
+          --disable-network-policy \
+          --disable=traefik \
+          --disable=servicelb \
+          --write-kubeconfig=/output/kubeconfig.yaml \
+          --write-kubeconfig-mode=644
 
     ports:
       - "6443:6443"
 
     volumes:
       - k3s-data:/var/lib/rancher/k3s
+      - k3s-node:/etc/rancher/node
       - ./.kube:/output
 
     tmpfs:
@@ -51,3 +71,4 @@ services:
 
 volumes:
   k3s-data:
+  k3s-node:
