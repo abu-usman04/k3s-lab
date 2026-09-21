@@ -1,4 +1,4 @@
-﻿name: k8s-playground
+name: k8s-playground
 
 services:
   k3s:
@@ -7,29 +7,16 @@ services:
     hostname: k3s
     privileged: true
     restart: unless-stopped
-
-    entrypoint: [ "/bin/sh", "-c" ]
-
+    entrypoint: ["/bin/sh", "-c"]
     command:
       - |
-        set -e
-
-        echo "Preparing Cilium host mounts..."
-
+        set -eu
         mkdir -p /sys/fs/bpf
-        if ! grep -qs ' /sys/fs/bpf ' /proc/mounts; then
-          mount -t bpf bpffs /sys/fs/bpf
-        fi
+        if ! grep -qs ' /sys/fs/bpf ' /proc/mounts; then mount -t bpf bpffs /sys/fs/bpf; fi
         mount --make-shared /sys/fs/bpf
-
         mkdir -p /run/cilium/cgroupv2
-        if ! grep -qs ' /run/cilium/cgroupv2 ' /proc/mounts; then
-          mount -t cgroup2 none /run/cilium/cgroupv2
-        fi
+        if ! grep -qs ' /run/cilium/cgroupv2 ' /proc/mounts; then mount -t cgroup2 none /run/cilium/cgroupv2; fi
         mount --make-shared /run/cilium/cgroupv2
-
-        echo "Starting K3s..."
-
         exec /bin/k3s server \
           --node-name=k3s \
           --flannel-backend=none \
@@ -38,15 +25,12 @@ services:
           --disable=servicelb \
           --write-kubeconfig=/output/kubeconfig.yaml \
           --write-kubeconfig-mode=644
-
     ports:
       - "6443:6443"
-
     volumes:
       - k3s-data:/var/lib/rancher/k3s
       - k3s-node:/etc/rancher/node
       - ./.kube:/output
-
     tmpfs:
       - /run
       - /var/run
@@ -54,20 +38,34 @@ services:
   tools:
     build:
       context: ./tools
-
     container_name: k8s-tools
-
-    network_mode: "service:k3s"
-
+    network_mode: service:k3s
     depends_on:
-      - k3s
-
+      bootstrap:
+        condition: service_completed_successfully
     environment:
       KUBECONFIG: /root/.kube/kubeconfig.yaml
-
     volumes:
       - ./.kube:/root/.kube:ro
       - ./cilium:/workspace/cilium:ro
+      - ./scripts:/workspace/scripts:ro
+      - ./workloads:/workspace/workloads:ro
+      - ./experiments:/workspace/experiments:ro
+
+  bootstrap:
+    build:
+      context: ./tools
+    container_name: k8s-bootstrap
+    network_mode: service:k3s
+    depends_on:
+      - k3s
+    environment:
+      KUBECONFIG: /root/.kube/kubeconfig.yaml
+    volumes:
+      - ./.kube:/root/.kube:ro
+      - ./cilium:/workspace/cilium:ro
+      - ./scripts:/workspace/scripts:ro
+    entrypoint: ["/bin/bash", "/workspace/scripts/bootstrap.sh"]
 
 volumes:
   k3s-data:

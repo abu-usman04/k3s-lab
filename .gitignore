@@ -1,2 +1,6 @@
 src/headlamp/headlamp-token.txt
+src/.kube/*
+!src/.kube/.gitkeep
+plans/
 .idea/
+.cache/

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: curlimages/curl:8.10.1
+          command: ["sh", "-c"]
+          args:
+            - while true; do curl -fsS http://api.demo.svc.cluster.local:8080/ >/dev/null; sleep 5; done
