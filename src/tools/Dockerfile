@@ -3,7 +3,7 @@ FROM alpine:3.22
 ARG HELM_VERSION=v3.21.4
 ARG KUBECTL_VERSION=v1.35.8
 ARG CILIUM_CLI_VERSION=v0.18.5
-ARG HUBBLE_CLI_VERSION=v1.20.2
+ARG HUBBLE_CLI_VERSION=v1.19.4
 
 RUN apk add --no-cache bash ca-certificates curl jq tar
 

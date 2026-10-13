@@ -1,0 +1,573 @@
+﻿{
+  "flows": [
+    {
+      "flow": {
+        "time": "2026-09-21T10:57:27.262740215Z",
+        "uuid": "b54b1ab8-396c-487d-bf16-8070a3a14a0b",
+        "emitter": {
+          "name": "Hubble",
+          "version": "1.20.2+ge0dc92bd"
+        },
+        "verdict": "FORWARDED",
+        "ethernet": {
+          "source": "b2:8f:8b:f5:eb:a9",
+          "destination": "0e:e8:d2:17:cf:eb"
+        },
+        "IP": {
+          "source": "10.42.0.159",
+          "destination": "10.42.0.11",
+          "ipVersion": "IPv4"
+        },
+        "l4": {
+          "UDP": {
+            "source_port": 50342,
+            "destination_port": 53
+          }
+        },
+        "source": {
+          "ID": 3781,
+          "identity": 25076,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=frontend",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "frontend-67ccdcc4b8-jj7gq",
+          "workloads": [
+            {
+              "name": "frontend",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "destination": {
+          "ID": 270,
+          "identity": 27953,
+          "cluster_name": "default",
+          "namespace": "kube-system",
+          "labels": [
+            "gen:io.cilium.k8s.named-ports=dns.UDP.53_dns-tcp.TCP.53_metrics.TCP.9153",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=kube-system",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=coredns",
+            "k8s:io.kubernetes.pod.namespace=kube-system",
+            "k8s:k8s-app=kube-dns"
+          ],
+          "pod_name": "coredns-c5fdd76cf-n8smj",
+          "workloads": [
+            {
+              "name": "coredns",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "Type": "L3_L4",
+        "node_name": "k3s",
+        "node_labels": [
+          "beta.kubernetes.io/arch=amd64",
+          "beta.kubernetes.io/instance-type=k3s",
+          "beta.kubernetes.io/os=linux",
+          "kubernetes.io/arch=amd64",
+          "kubernetes.io/hostname=k3s",
+          "kubernetes.io/os=linux",
+          "node-role.kubernetes.io/control-plane=true",
+          "node.kubernetes.io/instance-type=k3s"
+        ],
+        "event_type": {
+          "type": 4
+        },
+        "traffic_direction": "EGRESS",
+        "trace_observation_point": "TO_ENDPOINT",
+        "trace_reason": "NEW",
+        "is_reply": false,
+        "interface": {
+          "index": 9,
+          "name": "lxc259a2397c4aa"
+        },
+        "Summary": "UDP"
+      },
+      "node_name": "k3s",
+      "time": "2026-09-21T10:57:27.262740215Z"
+    },
+    {
+      "flow": {
+        "time": "2026-09-21T10:57:27.263250767Z",
+        "uuid": "fd226cf6-e95b-421e-89bd-de9780bef47e",
+        "emitter": {
+          "name": "Hubble",
+          "version": "1.20.2+ge0dc92bd"
+        },
+        "verdict": "FORWARDED",
+        "ethernet": {
+          "source": "42:c8:01:04:11:a7",
+          "destination": "aa:18:7b:c7:02:0d"
+        },
+        "IP": {
+          "source": "10.42.0.11",
+          "source_xlated": "10.43.0.10",
+          "destination": "10.42.0.159",
+          "ipVersion": "IPv4"
+        },
+        "l4": {
+          "UDP": {
+            "source_port": 53,
+            "destination_port": 50342
+          }
+        },
+        "source": {
+          "ID": 270,
+          "identity": 27953,
+          "cluster_name": "default",
+          "namespace": "kube-system",
+          "labels": [
+            "gen:io.cilium.k8s.named-ports=dns.UDP.53_dns-tcp.TCP.53_metrics.TCP.9153",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=kube-system",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=coredns",
+            "k8s:io.kubernetes.pod.namespace=kube-system",
+            "k8s:k8s-app=kube-dns"
+          ],
+          "pod_name": "coredns-c5fdd76cf-n8smj",
+          "workloads": [
+            {
+              "name": "coredns",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "destination": {
+          "ID": 3781,
+          "identity": 25076,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=frontend",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "frontend-67ccdcc4b8-jj7gq",
+          "workloads": [
+            {
+              "name": "frontend",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "Type": "L3_L4",
+        "node_name": "k3s",
+        "node_labels": [
+          "beta.kubernetes.io/arch=amd64",
+          "beta.kubernetes.io/instance-type=k3s",
+          "beta.kubernetes.io/os=linux",
+          "kubernetes.io/arch=amd64",
+          "kubernetes.io/hostname=k3s",
+          "kubernetes.io/os=linux",
+          "node-role.kubernetes.io/control-plane=true",
+          "node.kubernetes.io/instance-type=k3s"
+        ],
+        "reply": true,
+        "event_type": {
+          "type": 4
+        },
+        "traffic_direction": "EGRESS",
+        "trace_observation_point": "TO_ENDPOINT",
+        "trace_reason": "REPLY",
+        "is_reply": true,
+        "interface": {
+          "index": 23,
+          "name": "lxc7a97c3ec976d"
+        },
+        "Summary": "UDP"
+      },
+      "node_name": "k3s",
+      "time": "2026-09-21T10:57:27.263250767Z"
+    },
+    {
+      "flow": {
+        "time": "2026-09-21T10:57:27.263883891Z",
+        "uuid": "b69daeb2-3e00-4996-915a-438bc2b2cf72",
+        "emitter": {
+          "name": "Hubble",
+          "version": "1.20.2+ge0dc92bd"
+        },
+        "verdict": "FORWARDED",
+        "ethernet": {
+          "source": "b2:8f:8b:f5:eb:a9",
+          "destination": "0e:e8:d2:17:cf:eb"
+        },
+        "IP": {
+          "source": "10.42.0.159",
+          "destination": "10.42.0.11",
+          "ipVersion": "IPv4"
+        },
+        "l4": {
+          "UDP": {
+            "source_port": 46414,
+            "destination_port": 53
+          }
+        },
+        "source": {
+          "ID": 3781,
+          "identity": 25076,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=frontend",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "frontend-67ccdcc4b8-jj7gq",
+          "workloads": [
+            {
+              "name": "frontend",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "destination": {
+          "ID": 270,
+          "identity": 27953,
+          "cluster_name": "default",
+          "namespace": "kube-system",
+          "labels": [
+            "gen:io.cilium.k8s.named-ports=dns.UDP.53_dns-tcp.TCP.53_metrics.TCP.9153",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=kube-system",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=coredns",
+            "k8s:io.kubernetes.pod.namespace=kube-system",
+            "k8s:k8s-app=kube-dns"
+          ],
+          "pod_name": "coredns-c5fdd76cf-n8smj",
+          "workloads": [
+            {
+              "name": "coredns",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "Type": "L3_L4",
+        "node_name": "k3s",
+        "node_labels": [
+          "beta.kubernetes.io/arch=amd64",
+          "beta.kubernetes.io/instance-type=k3s",
+          "beta.kubernetes.io/os=linux",
+          "kubernetes.io/arch=amd64",
+          "kubernetes.io/hostname=k3s",
+          "kubernetes.io/os=linux",
+          "node-role.kubernetes.io/control-plane=true",
+          "node.kubernetes.io/instance-type=k3s"
+        ],
+        "event_type": {
+          "type": 4
+        },
+        "traffic_direction": "EGRESS",
+        "trace_observation_point": "TO_ENDPOINT",
+        "trace_reason": "NEW",
+        "is_reply": false,
+        "interface": {
+          "index": 9,
+          "name": "lxc259a2397c4aa"
+        },
+        "Summary": "UDP"
+      },
+      "node_name": "k3s",
+      "time": "2026-09-21T10:57:27.263883891Z"
+    },
+    {
+      "flow": {
+        "time": "2026-09-21T10:57:27.264385123Z",
+        "uuid": "d351c77e-e2f0-4193-ad97-dc82bc538fb9",
+        "emitter": {
+          "name": "Hubble",
+          "version": "1.20.2+ge0dc92bd"
+        },
+        "verdict": "FORWARDED",
+        "ethernet": {
+          "source": "42:c8:01:04:11:a7",
+          "destination": "aa:18:7b:c7:02:0d"
+        },
+        "IP": {
+          "source": "10.42.0.11",
+          "source_xlated": "10.43.0.10",
+          "destination": "10.42.0.159",
+          "ipVersion": "IPv4"
+        },
+        "l4": {
+          "UDP": {
+            "source_port": 53,
+            "destination_port": 46414
+          }
+        },
+        "source": {
+          "ID": 270,
+          "identity": 27953,
+          "cluster_name": "default",
+          "namespace": "kube-system",
+          "labels": [
+            "gen:io.cilium.k8s.named-ports=dns.UDP.53_dns-tcp.TCP.53_metrics.TCP.9153",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=kube-system",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=coredns",
+            "k8s:io.kubernetes.pod.namespace=kube-system",
+            "k8s:k8s-app=kube-dns"
+          ],
+          "pod_name": "coredns-c5fdd76cf-n8smj",
+          "workloads": [
+            {
+              "name": "coredns",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "destination": {
+          "ID": 3781,
+          "identity": 25076,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=frontend",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "frontend-67ccdcc4b8-jj7gq",
+          "workloads": [
+            {
+              "name": "frontend",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "Type": "L3_L4",
+        "node_name": "k3s",
+        "node_labels": [
+          "beta.kubernetes.io/arch=amd64",
+          "beta.kubernetes.io/instance-type=k3s",
+          "beta.kubernetes.io/os=linux",
+          "kubernetes.io/arch=amd64",
+          "kubernetes.io/hostname=k3s",
+          "kubernetes.io/os=linux",
+          "node-role.kubernetes.io/control-plane=true",
+          "node.kubernetes.io/instance-type=k3s"
+        ],
+        "reply": true,
+        "event_type": {
+          "type": 4
+        },
+        "traffic_direction": "EGRESS",
+        "trace_observation_point": "TO_ENDPOINT",
+        "trace_reason": "REPLY",
+        "is_reply": true,
+        "interface": {
+          "index": 23,
+          "name": "lxc7a97c3ec976d"
+        },
+        "Summary": "UDP"
+      },
+      "node_name": "k3s",
+      "time": "2026-09-21T10:57:27.264385123Z"
+    },
+    {
+      "flow": {
+        "time": "2026-09-21T10:57:27.265276704Z",
+        "uuid": "9c779fd7-1157-44c6-aa41-33d40afdc85b",
+        "emitter": {
+          "name": "Hubble",
+          "version": "1.20.2+ge0dc92bd"
+        },
+        "verdict": "FORWARDED",
+        "ethernet": {
+          "source": "9a:81:64:22:f2:38",
+          "destination": "42:98:10:e1:cb:02"
+        },
+        "IP": {
+          "source": "10.42.0.159",
+          "destination": "10.42.0.208",
+          "ipVersion": "IPv4"
+        },
+        "l4": {
+          "TCP": {
+            "source_port": 53768,
+            "destination_port": 80,
+            "flags": {
+              "SYN": true
+            }
+          }
+        },
+        "source": {
+          "ID": 3781,
+          "identity": 25076,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=frontend",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "frontend-67ccdcc4b8-jj7gq",
+          "workloads": [
+            {
+              "name": "frontend",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "destination": {
+          "ID": 3306,
+          "identity": 15844,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=api",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "api-569d85fcdc-skblw",
+          "workloads": [
+            {
+              "name": "api",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "Type": "L3_L4",
+        "node_name": "k3s",
+        "node_labels": [
+          "beta.kubernetes.io/arch=amd64",
+          "beta.kubernetes.io/instance-type=k3s",
+          "beta.kubernetes.io/os=linux",
+          "kubernetes.io/arch=amd64",
+          "kubernetes.io/hostname=k3s",
+          "kubernetes.io/os=linux",
+          "node-role.kubernetes.io/control-plane=true",
+          "node.kubernetes.io/instance-type=k3s"
+        ],
+        "event_type": {
+          "type": 4
+        },
+        "traffic_direction": "EGRESS",
+        "trace_observation_point": "TO_ENDPOINT",
+        "trace_reason": "NEW",
+        "is_reply": false,
+        "interface": {
+          "index": 21,
+          "name": "lxcba93b4b5a97b"
+        },
+        "Summary": "TCP Flags: SYN"
+      },
+      "node_name": "k3s",
+      "time": "2026-09-21T10:57:27.265276704Z"
+    },
+    {
+      "flow": {
+        "time": "2026-09-21T10:57:27.265354453Z",
+        "uuid": "f1f60320-1c59-47a7-a717-06b611332496",
+        "emitter": {
+          "name": "Hubble",
+          "version": "1.20.2+ge0dc92bd"
+        },
+        "verdict": "FORWARDED",
+        "ethernet": {
+          "source": "42:c8:01:04:11:a7",
+          "destination": "aa:18:7b:c7:02:0d"
+        },
+        "IP": {
+          "source": "10.42.0.208",
+          "source_xlated": "10.43.234.126",
+          "destination": "10.42.0.159",
+          "ipVersion": "IPv4"
+        },
+        "l4": {
+          "TCP": {
+            "source_port": 8080,
+            "destination_port": 53768,
+            "flags": {
+              "SYN": true,
+              "ACK": true
+            }
+          }
+        },
+        "source": {
+          "ID": 3306,
+          "identity": 15844,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=api",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "api-569d85fcdc-skblw",
+          "workloads": [
+            {
+              "name": "api",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "destination": {
+          "ID": 3781,
+          "identity": 25076,
+          "cluster_name": "default",
+          "namespace": "demo",
+          "labels": [
+            "k8s:app=frontend",
+            "k8s:io.cilium.k8s.namespace.labels.kubernetes.io/metadata.name=demo",
+            "k8s:io.cilium.k8s.policy.cluster=default",
+            "k8s:io.cilium.k8s.policy.serviceaccount=default",
+            "k8s:io.kubernetes.pod.namespace=demo"
+          ],
+          "pod_name": "frontend-67ccdcc4b8-jj7gq",
+          "workloads": [
+            {
+              "name": "frontend",
+              "kind": "Deployment"
+            }
+          ]
+        },
+        "Type": "L3_L4",
+        "node_name": "k3s",
+        "node_labels": [
+          "beta.kubernetes.io/arch=amd64",
+          "beta.kubernetes.io/instance-type=k3s",
+          "beta.kubernetes.io/os=linux",
+          "kubernetes.io/arch=amd64",
+          "kubernetes.io/hostname=k3s",
+          "kubernetes.io/os=linux",
+          "node-role.kubernetes.io/control-plane=true",
+          "node.kubernetes.io/instance-type=k3s"
+        ],
+        "reply": true,
+        "event_type": {
+          "type": 4
+        },
+        "traffic_direction": "EGRESS",
+        "trace_observation_point": "TO_ENDPOINT",
+        "trace_reason": "REPLY",
+        "is_reply": true,
+        "interface": {
+          "index": 23,
+          "name": "lxc7a97c3ec976d"
+        },
+        "Summary": "TCP Flags: SYN, ACK"
+      },
+      "node_name": "k3s",
+      "time": "2026-09-21T10:57:27.265354453Z"
+    }
+  ]
+}
