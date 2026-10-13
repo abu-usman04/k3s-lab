@@ -21,7 +21,7 @@ import (
 
 func main() {
 	address := flag.String("address", "127.0.0.1:4245", "Hubble Relay address")
-	namespace := flag.String("namespace", "", "client-side source or destination namespace filter")
+	namespace := flag.String("namespace", "demo", "client-side source or destination namespace filter")
 	limit := flag.Uint64("limit", 20, "maximum flow responses")
 	timeout := flag.Duration("timeout", 10*time.Second, "request timeout")
 	caFile := flag.String("ca", "", "CA certificate file for Relay TLS")

@@ -11,6 +11,8 @@ services:
     command:
       - |
         set -eu
+        mount --make-rshared /run
+        mount --make-rshared /var/run
         mkdir -p /sys/fs/bpf
         if ! grep -qs ' /sys/fs/bpf ' /proc/mounts; then mount -t bpf bpffs /sys/fs/bpf; fi
         mount --make-shared /sys/fs/bpf

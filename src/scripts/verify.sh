@@ -14,4 +14,4 @@ kubectl -n kube-system rollout status deployment/coredns --timeout=2m
 kubectl -n kube-system rollout status deployment/hubble-relay --timeout=2m
 kubectl -n kube-system rollout status deployment/hubble-ui --timeout=2m
 cilium status --wait --wait-duration 2m
-hubble status -P -n kube-system
+hubble status -P --kube-namespace kube-system
